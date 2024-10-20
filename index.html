@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(15, 15, 64);
+        color: aliceblue;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        background-color: rgb(23, 33, 138);
+        padding: 0 20px;
+      }
+      nav ul {
+        display: flex;
+        justify-content: center;
+      }
+      nav ul li {
+        list-style: none;
+        margin: 0 15px;
+      } 
+      nav ul li a {
+        text-decoration: none;
+        color: rgb(159, 196, 229);
+      }
+      nav ul li a:hover {
+        color: blueviolet;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+      main hr {
+        border: 0;
+        background: #9c97f1;
+        height: 1.2px;
+        margin: 40px 20px;
+      }
+      .left {
+        font-size: 2rem;
+        color: rgb(234, 123, 123);
+      }
+      .firstSection {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 60px 0;
+        padding: 0 20px;
+        flex-wrap: wrap;
+      }
+      .firstSection > div {
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+      }
+      .leftSection {
+        font-size: 2rem;
+      }
+      .rightSection img {
+        width: 100%;
+        max-width: 300px;
+      }
+      .yellow {
+        color: rgb(234, 123, 123);
+      }
+      #element {
+        color: rgb(234, 123, 123);
+      }
+      .secondSection {
+        max-width: 80vw;
+        margin: auto;
+        height: 80vh;
+      }
+      .secondSection h1 {
+        font-size: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            padding: 10px;
+        }
+        .firstSection {
+            flex-direction: column;
+        }
+      }
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(23, 33, 138);
+      }
+        .login-box {
+          background-color: #fff;
+          padding: 30px;
+          border-radius: 10px;
+          width: 100%;
+          max-width: 400px;
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+          text-align: center;
+        }
+      .login-box h2 {
+        margin-bottom: 20px;
+        color: rgb(15, 15, 64);
+      }
+      .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid rgb(15, 15, 64);
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+      .login-box button {
+        width: 100%;
+        padding: 10px;
+        background-color: rgb(15, 15, 64);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .login-box button:hover {
+        background-color: rgb(234, 123, 123);
+      }
+      .error {
+        color: red;
+        margin: 10px 0;
+        font-size: 0.9rem;
+      }
+      .success {
+        color: green;
+        margin: 10px 0;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="left">eSETU</div>
+        <div class="right">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+        <section class="firstSection">
+            <div class="leftSection">
+                Hi, My name is <span class="yellow">Yashi</span>
+                <div>and I am a passionate</div>
+                <div>Web Developer</div>
+                <span id="element"></span>
+            </div>
+            <div class="rightSection">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBBMZda5cyRg46E2XE5kMNGM6kvtoEWjiD3Q&s" alt="img">
+            </div>
+        </section>
+        <hr>
+        <section id="login" class="login-container">
+          <div class="login-box">
+            <h2>Login</h2>
+            <form id="loginForm">
+              <input type="text" id="username" placeholder="Username" required />
+              <input type="password" id="password" placeholder="Password" required />
+              <button type="submit">Login</button>
+              <div id="errorMessage" class="error"></div>
+              <div id="successMessage" class="success"></div>
+            </form>
+          </div>
+        </section>
+    </main>
+  
+    <!-- Smooth Scroll JavaScript -->
+     <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                   behavior: 'smooth' 
+                });
+            });
+        });
+
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        loginForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          const validUsername = "user";
+          const validPassword = "password123";
+
+          if (username === validUsername && password === validPassword){
+            errorMessage.textContent = "";
+            successMessage.textContent = "Login successful!";
+            setTimeout(() => {
+              successMessage.textContent = "";
+              window.location.href = "#home";
+            }, 1500);
+          } else {
+            errorMessage.textContent = "Invalid username or password!";
+            successMessage.textContent = "";
+          }
+        });
+     </script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+      <!-- Setup and start animation! -->
+    <script>
+        var typed = new Typed('#element', {
+          strings: ['Graphic Designer', 'Web Designer', 'Video Editor'],
+          typeSpeed: 50,
+        });
+      </script>
+      <section id="home" style="height: 70vh; background: rgb(15, 15, 64);">
+        <h1>Home Content</h1>
+        <br>
+        <p>eSETU is a Business to Technology (B2T) consulting company established in 1993 to provide innovative enterprise solutions utilizing products built upon revolutionary methodologies. The solutions developed by eSETU are designed to Institutionalize Enterprise business processes (formal business capture frameworks) Dramatically reduce solution architecture thru implementation cycle time for enterprise applications software development Provide an elegant framework, consulting expertise and software tools to enable speedy point solution development and business validation of enterprise applications. Our framework and solutions have been implemented across projects in various industries including Financial Services, Insurance, Real Estate, Marketing Services and Health-care. Our solutions facilitate process migration to outsourcing partners (BPO). Our facilities include consulting and solutions development centers in Pune, India and global delivery center in Boston,USA. Our team is a healthy mix of domain experts, enterprise application process and technology specialists and software development professionals</p>
+        <br>
+        <p>We help businesses organize and simplify their processes, making them more efficient and productive. Our goal is to make sure that your business runs smoothly, so you can focus on growth.Need software that fits your business perfectly? We create customized solutions, ensuring that you get exactly what you need, whether it’s for managing data, improving customer experience, or streamlining operations.Our team of experts will guide you in choosing the right technologies and strategies. We analyze your business needs and suggest solutions that save time, reduce costs, and drive results.We’ve been helping businesses for decades, which means we know what works. Every business is different. We work closely with you to create solutions that fit your specific needsWith teams in India and the USA, we bring the best of both worlds – local expertise and global reach.From finance to healthcare, we’ve worked with companies across many industries, giving us a deep understanding of different business needs. Helping financial institutions manage data and operations securely and efficiently.Simplifying insurance claims, customer management, and other processes.Assisting real estate companies with property management and customer interaction.Building solutions that improve hospital operations and patient careCreating tools to better manage marketing campaigns and client data.We start by learning about your business and its challenges. Our experts create customized solutions tailored to your specific needs.We implement the solution and provide ongoing support to ensure everything runs smoothly.</p>
+      </section>
+      <hr style="border: 0; background: #9c97f1; height: 1.2px; margin: 40px 20px;">
+      <section id="about" style="height: 70vh; background: rgb(15, 15, 64);">
+        <h1>About Us</h1>
+        <br>
+        <p>eSETU, after over a decade of building high end enterprise transaction systems for the Insurance, Finance, Telecom and Marketing segments, has developed a best practices method called S2DLC™ (SMART™ Solutions Development Life Cycle, the next generation SDLC). This methodology is followed by all eSETU consultants during the client engagement and starts with capturing all business processes, operations and activities utilizing formal techniques enabled by our suite of tools. Further, our automated business transformation tools convert the formal business specifications to an operational execution framework providing for accurate and agile development of all required work flow components, EAI components and Application software components. The execution framework assists the business in simulating the operational business value chains and also provides a platform to develop various KPIs to help monitor the business operations.</p>
+        <br>
+        <p>E-ValueFlow Designor™ enables the eSETU consultants to model business value chains within the enterprise. The tool through its very user friendly interface provides the eSETU consultants working very closely with the business analysts the ability to specify the value of a business enterprise by distinguishing between what is the business (core) and how to execute the business (operations) hence providing the business a road map to model formal unambiguous value chains across functions within the enterprise. Also, this pre-implementation formalism plays a important role in business decision making while building or buying automated IT solutions for each value chain.</p>
+        <br>
+        <p>E-ValueFlow DesignorPlus™ extends the power of the E-ValueFlow Designor™ to provide a very robust high end transaction based automated solution framework for each business value chain resulting in a generated transaction system on .Net and J2EE platforms. The enterprise has the ability to execute the automated solution for chosen value chains using the E-ValueFlow™ Business Simulator Platform. E-ValueFlow Monitor™ provides the enterprise the ability to monitor all the executing value chains for obtaining the business value. Also, all functionality to control the business value derived from the executing chains are provided through a very user friendly monitor console and a very good framework to build Performance Dashboards to monitor KPIs.</p>
+      </section>
+      <hr style="border: 0; background: #9c97f1; height: 1.2px; margin: 40px 20px;">
+      <section id="services" style="height: 70vh; background: rgb(15, 15, 64);">
+        <h1>Services Content</h1>
+        <br>
+        <p>eSETU consultants “bridge the gap” between the Operational world and the Technology world (B2T) and offer an elegant set of SMART™ solutions to help clients build very high end cost effective adaptable and configurable systems for the business. eSETU Business Specification Framework provides clients a framework to identify future business opportunities within the context of current and emerging business models. eSETU provides additional value to clients with regard to institutionalizing business processes. Formal, unambiguous value chain model of the business provides client opportunity to build IP around vertical solutions. Business Specification framework provides clients a formal mechanism for “Business QA” of systems under development hence providing business validation processes for outsourced IT projects. Our solutions facilitate process migration (knowledge) to outsourcing partners (BPO).</p>
+        <br>
+        <p> Institutionalize Enterprise business processes (formal business capture frameworks)Dramatically reduce solution architecture through implementation cycle time for enterprise applications software development Provide an elegant framework, consulting expertise and software tools to enable speedy point solution development and business validation of enterprise applications.Real estate associations, agencies, and brokers are engaged in end customer service business and hence heavily depend on the communications with customers and among themselves, managing up-to-date information leveraging to their business advantage. Setu provided an end to end solution taking care of their present and future needs to manage the real estate domain information at their fingertips round the clock, whether they are in office or on the field. The solution institutionalizes the processes from searching a property till closing the deal involving many to many way communications between buyer, seller, realtor agent, attorneys and various agencies involved in fullfilling the real estate transaction.SmartSourcer™ armed with smart and innovative methodology, shows how effectively and efficiently a process can be transitioned to offshore and managed. It's core aim is not only to give its clients cost Benefits but also achieve increased Process Efficiencies through continuous innovations in technology. The Solution has continuous innovations to achieve increased process efficiencies, modeling the process, improvement of the processes, metrics development, transition planning, build technology systems for the outsourced processes, transition and stabilization of the outsourced process.</p>
+      </section>
+      <hr style="border: 0; background: #9c97f1; height: 1.2px; margin: 40px 20px;">
+      <section id="products" style="height: 60vh; background: rgb(15, 15, 64);">
+        <h1>Products</h1>
+        <br>
+        <p>eSETU has leveraged a decade of experience in building enterprise transaction systems into a very unique product called E-ValueFlow™. E-ValueFlow™ is a set of enterprise software tools that assist eSETU consultants during client engagements.</p>
+        <br>
+        <p>E-ValueFlow Designor™ enables the SETU consultants to model business value chains within the enterprise. The tool through its very user friendly interface provides the SETU consultants working very closely with the business analysts the ability to specify the value of a business enterprise by distinguishing between what is the business (core) and how to execute the business (operations) hence providing the business a road map to model formal unambiguous value chains across functions within the enterprise. Also, this pre-implementation formalism plays a important role in business decision making while building or buying automated IT solutions for each value chain.
+        </p>
+        <br>
+        <p>E-ValueFlow DesignorPlus™ extends the power of the E-ValueFlow Designor™ to provide a very robust high end transaction based automated solution framework for each business value chain resulting in a generated transaction system on .Net and J2EE platforms. The enterprise has the ability to execute the automated solution for chosen value chains using the E-ValueFlow™ Business Simulator Platform</p>
+        <br>
+        <p>E-ValueFlow™ Monitor provides the enterprise the ability to monitor all the executing value chains for obtaining the business value. Also, all functionality to control the business value derived from the executing chains are provided through a very user friendly monitor console and a very good framework to build Performance Dashboards to monitor KPIs.</p>
+      </section>
+      <hr style="border: 0; background: #9c97f1; height: 1.2px; margin: 40px 20px;">
+      <section id="contact" style="height: 40vh; background: rgb(15, 15, 64);">
+        <h1>Contact Us</h1>
+        <br>
+        <ul>eSetu Software Consultants Pvt. Ltd.</ul>
+          <ul>41-42 Acacia Gardens 1</ul>
+          <ul>Magarpatta City</ul>
+          <ul>Pune - 411 013</ul>
+          <ul>INDIA</ul>
+          <br>
+          <ul>Phone :- +91 85302 33222</ul>
+          <ul>Mail :- srivastavayashi100@gmail.com</ul>
+      </section>
+  </body>
+  </body>
+</html>
